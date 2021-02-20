@@ -1,0 +1,27 @@
+# Complete the function below.
+
+def group_numbers(arr):
+    even = 0
+    odd = len(arr) - 1
+
+    def is_even(num):
+        return True if num % 2 == 0 else False
+
+    def is_odd(num):
+        return True if num % 2 == 1 else False
+
+    while even < odd:
+        if is_even(arr[even]):
+            even += 1
+        elif is_odd(arr[odd]):
+            odd -= 1
+        else:
+            arr[even], arr[odd] = arr[odd], arr[even]
+            even += 1
+            odd -= 1
+
+    return arr
+
+
+def groupNumbers(intArr):
+    return group_numbers(intArr)

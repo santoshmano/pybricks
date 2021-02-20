@@ -1,0 +1,26 @@
+"""
+IK Recursion Homework - Part 2, Problem 2
+
+Tower of Hanoi
+"""
+
+def _tower_of_hanoi(n, src, dest, temp, pegs):
+    if n == 1:
+        disk = pegs[src[1]].pop()
+        pegs[dest[1]].append(disk)
+        print("Moving {} from {} to {}, pegs:{}".format(disk, src[0], dest[0], pegs))
+    else:
+        _tower_of_hanoi(n-1, src, temp, dest, pegs)
+        _tower_of_hanoi(1, src, dest, temp, pegs)
+        _tower_of_hanoi(n-1, temp, dest, src, pegs)
+
+def tower_of_hanoi(n):
+    src = ("A", 0)
+    dest = ("B", 1)
+    temp = ("C", 2)
+    pegs = [[x for x in range(n, 0, -1)], [], []]
+    print("Before moving, pegs:", pegs)
+    _tower_of_hanoi(n, src, dest, temp, pegs)
+    print("After moving, pegs:", pegs)
+
+tower_of_hanoi(5)

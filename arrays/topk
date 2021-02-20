@@ -1,0 +1,20 @@
+from heapq import *
+
+def top_largest(nums, k):
+    min_heap = []
+    if not k: return min_heap
+    # construct heap with k elements first
+    for i in range(k):
+        heappush(min_heap, nums[i])
+    for i in range(k, len(nums)):
+        if min_heap[0] < nums[i]:
+            heappop(min_heap)
+            heappush(min_heap, nums[i])
+
+    return min_heap
+
+print(top_largest([2, 4, 1, 0, 5], 3))
+print(top_largest([-2, -4, -1, 0, -5], 2))
+print(top_largest([21, 423, 12121, 12, 15], 4))
+print(top_largest([23, 4, 1, 0, 5], 0))
+print(top_largest([2, 4, 1, 0, 5], 1))

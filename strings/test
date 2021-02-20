@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct Node
+{
+        int data;
+        struct Node *next;
+        struct Node *prev;
+}node;
+void insert(node *pointer, int data)
+{
+        /* Iterate through the list till we encounter the last node.*/
+        while(pointer->next!=NULL)
+        {
+                pointer = pointer -> next;
+        }
+        /* Allocate memory for the new node and put data in it.*/
+        pointer->next = (node *)malloc(sizeof(node));
+        (pointer->next)->prev = pointer;
+        pointer = pointer->next;
+        pointer->data = data;
+        pointer->next = NULL;
+}
+int find(node *pointer, int key)
+{
+        pointer =  pointer -> next; //First node is dummy node.
+        /* Iterate through the entire linked list and search for the key. */
+        while(pointer!=NULL)
+        {
+                if(pointer->data == key) //key is found.
+                {
+                        return 1;
+                }
+                pointer = pointer -> next;//Search in the
